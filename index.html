@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html manifest="demo.appcache">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="Keywords" Content="mouse, cheen, chen, neeon, ellen, luxin, 陈博鑫">
+    <meta name="Description" Content="陈博鑫的个人主页">
+    <link rel="shortcut icon" href="图片啊啊啊啊啊啊啊啊啊啊">
+    <link rel="stylesheet" type="text/css" href="FiraCode.css">
+    <script src="knockout-min.js"></script>
+    <script src="clipboard.min.js"></script>
+    <title>chen的个人主页｜MOUSE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            transition: 0.3s ease all;
+            cursor: default;
+        }
+        body {
+            /**
+            background-image: linear-gradient(to left, rgba(255, 5, 150, 0.2), rgba(10, 250, 255, 0.2)), url(https://s1.ax1x.com/2022/07/24/jj4avD.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            **/
+            background-color: #eee;
+        }
+        #box {
+            /* background-color: red; */
+            width: 100%;
+            height: 100px;
+            margin: 0 auto;
+            padding-top: 5%;
+        }
+        .meBox {
+            float: left;
+            width: 20rem;
+            height: 25rem;
+            background-color: white;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+            margin-top: 90px;
+            margin-left: 11%;
+            border-radius: 2%;
+            transition: all 0.3s;
+            color: #555;
+        }
+        .headPhoto {
+            width: 8rem;
+            height: 8rem;
+            background: url(图片啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊) no-repeat;
+            background-size: cover;
+            border-radius: 50%;
+            position: relative;
+            top: -15%;
+            left: 50%;
+            margin-left: -4rem;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .meBox:hover .headPhoto {
+            transform: rotate(360deg);
+        }
+        .meBox-title {
+            width: auto;
+            margin: 0 auto;
+        }
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+        }
+        @keyframes blink-caret {
+            50% {
+                border-color: transparent;
+            }
+        }
+        .meBox-title p {
+            font-size: 1.2rem;
+            border-right: 0.1em solid;
+            width: 11.5ch;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 2s steps(20, end), blink-caret 0.3s step-end infinite alternate;
+            margin: -30px 0 0 90px;
+            transition: all 0.3s;
+        }
+        .meBox-title .fg {
+            width: 80%;
+            height: 2px;
+            background-image: linear-gradient(to left, #3498db, #2980b9);
+            margin: 5% 0 0 10%;
+        }
+        .meBox-text {
+            width: 90%;
+            height: 45%;
+            overflow: hidden;
+            color: #555;
+            font-size: 0.95rem;
+            animation-name: meBox-text;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+            margin: 5% 0 0 10%;
+            transition: all 0.3s;
+        }
+        .meBox-text p {
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+        .meBox-text {
+            font-size: 1rem;
+        }
+        @keyframes meBox-text {
+            0% {
+                transform: translateY(30px);
+                color: white;
+            }
+            100% {
+                transform: translateY(0);
+                color: #555;
+            }
+        }
+        .meBox-Button {
+            width: 100%;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: #666;
+            cursor: pointer;
+        }
+        .meBox-Button a {
+            display: inline-block;
+            float: left;
+            width: 158px;
+            height: 50px;
+            margin-top: 13px;
+            line-height: 50px;
+            color: gray;
+            transition: all 0.3s;
+        }
+        .meBox-Button a:hover {
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+        #cmdBox {
+            width: 720px;
+            height: 550px;
+            float: right;
+            margin-right: 5%;
+            /* background-color: green; */
+        }
+        .cmd {
+            width: 600px;
+            height: 446px;
+            border-radius: 10px 10px 5px 5px;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            font-size: 14px;
+            line-height: 21px;
+            color: rgb(88, 89, 92);
+            position: relative;
+            top: -2px;
+            left: 0;
+        }
+        .cmd:hover {
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+            margin: -5px 0 0 -5px;
+            z-index: 1;
+        }
+        .cmd .title {
+            width: 100%;
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            line-height: 25px;
+            position: relative;
+            top: 4px;
+        }
+        .cmd .title span {
+            display: inline-block;
+            width: 70%;
+            text-align: center;
+            /* background-color: red; */
+        }
+        .cmd .click {
+            margin-left: 10px;
+            float: left;
+            position: relative;
+            top: 3px;
+        }
+        .cmd .click div {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 8px 0 0 10px;
+            float: left;
+        }
+        .cmd .click .red {
+            background-color: #ff1b22;
+            box-shadow: 0 0 1px #ff1b22;
+        }
+        .cmd .click .yellow {
+            background-color: #ffaf00;
+            box-shadow: 0 0 1px #ffaf00;
+        }
+        .cmd .click .green {
+            background-color: #00931a;
+            box-shadow: 0 0 1px #00931a;
+        }
+        .cmdText {
+            padding-top: 10px;
+            padding-left: 15px;
+        }
+        .cmd2 {
+            position: relative;
+            top: -380px;
+            left: 80px;
+        }
+        .ul {
+            margin-left: 15px;
+        }
+        .ul a {
+            color: #555;
+        }
+        .ul a:hover {
+            color: #3498db;
+        }
+        #footer {
+            width: 100%;
+            color: black;
+            float: left;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            margin-bottom: 30px;
+            /* background-color: blue; */
+            z-index: 154;
+        }
+        #footer a {
+            text-decoration: none;
+            color: black;
+        }
+        #footer a:hover {
+            color: rgb(0, 81, 255);
+        }
+        .container {
+            padding: 1em;
+            overflow: hidden;
+            position:absolute;
+            float: right;
+            margin-right: 5%;
+            z-index: 666;
+            font-size: 14px;
+        }
+        .material-color-picker {
+            display: flex;
+            width: 3em;
+            margin: 0 auto;
+            height: auto;
+            background-color: white;
+            border-radius: 0.5em;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+        .material-color-picker:hover {
+            width: 26em;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+        .material-color-picker__left-panel {
+          z-index: 1;
+        }
+        .material-color-picker__right-panel {
+          position: relative;
+          flex-grow: 1;
+          overflow: hidden;
+        }
+        .color-selector {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          padding: 1em 0;
+          /* border-right: 0.2em solid #DDD; */
+        }
+        .color-selector input[type='radio'] {
+          display: none;
+        }
+        .color-selector label {
+          position: relative;
+          display: inline-block;
+          padding: 0.4em 1em;
+          cursor: pointer;
+        }
+        .color-selector label:before {
+          content: '';
+          display: inline-block;
+          vertical-align: middle;
+          padding: 0.5em;
+          background-color: currentColor;
+          border-radius: 50%;
+        }
+        .color-selector label:after {
+          content: '';
+          position: absolute;
+          top: 51%;
+          left: 50%;
+          -webkit-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%);
+          border: 0.2em solid;
+          border-radius: 50%;
+          transition: padding 200ms;
+        }
+        .color-selector input[type='radio']:checked + label:after {
+          padding: 0.75em;
+        }
+        .color-palette-wrapper {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          -webkit-transform: translateX(-100%);
+                  transform: translateX(-100%);
+          display: flex;
+          flex-direction: column;
+          padding: 1em;
+        }
+        .color-palette-wrapper.js-active {
+          -webkit-transform: translateX(0);
+                  transform: translateX(0);
+        }
+        .color-palette-header {
+          display: flex;
+          justify-content: space-between;
+          margin: 0;
+          margin-bottom: 1em;
+          font-weight: 100;
+          color: #757575;
+        }
+        .color-palette {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+        .color-palette__item {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-grow: 1;
+          margin: 0.25em 0;
+          padding: 0 1em;
+          border-radius: 0.25em;
+          transition: -webkit-transform 250ms;
+          transition: transform 250ms;
+          transition: transform 250ms, -webkit-transform 250ms;
+          cursor: pointer;
+        }
+        .color-palette__item:hover {
+          -webkit-transform: scale(1.05);
+                  transform: scale(1.05);
+        }
+        .copied-indicator {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translate(-50%, 0);
+                  transform: translate(-50%, 0);
+          opacity: 0;
+          transition: all 250ms;
+        }
+        .copied-indicator.js-copied {
+          -webkit-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%);
+          opacity: 0.75;
+        }
+        #button {
+            outline: none;
+            border: none;
+        }
+        /* 自适应 */
+        @media screen and (max-width: 1250px) {
+            .meBox {
+                margin-left: 3%;
+            }
+            #cmdBox {
+                margin-right: 3%;
+            }
+        }
+        @media screen and (max-width: 1110px) {
+            .meBox {
+                float: none;
+                margin: 100px auto 100px;
+            }
+            #cmdBox {
+                float: none;
+                margin: 0 auto 100px;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .meBox {
+                width: 300px;
+            }
+            .meBox-Button a:hover {
+                color: rgb(0, 132, 255);
+            }
+            .meBox-Button a {
+                width: 150px;
+                margin-top: 0;
+            }
+            .meBox-title p {
+                font-size: 1.1rem;
+            }
+            .headPhoto {
+                width: 8rem;
+                height: 8rem;
+                margin: -0.5rem 0 0 -4rem;
+                transform: rotate(360deg);
+            }
+            .meBox-text {
+                font-size: 0.94rem;
+            }
+            .meBox-Button a {
+                width: 150px;
+            }
+            #cmdBox {
+                width: 100%;
+                height: 850px;
+            }
+            .cmd {
+                width: 90%;
+                margin: 0 auto;
+            }
+            .cmd2 {
+                position: relative;
+                top: 20px;
+                left: 0;
+            }
+            .cmd:hover {
+                width: 90%;
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+                margin: 0 auto;
+                z-index: 1;
+            }
+            .container {
+                display:none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <!-- 个人资料卡片 -->
+        <div class="meBox">
+            <!-- 头像 -->
+            <div class="headPhoto"></div>
+            <!-- 介绍 -->
+            <div class="meBox-title">
+                <p>I'm monse</p>
+                <div class="fg"></div>
+            </div>
+            <div class="meBox-text">
+                <p>这里是陈博鑫 - monse</p>
+                <br>
+                <p>[Subjects] 英语 历史 生物</p>
+                <p>[Forte] HTML Python</p>
+                <p>[Hobbies] 编程 计算机</p>
+                <p>[Games] MC </p>
+                <p>[Trait] 路痴 </p>
+            </div>
+            <!-- 两个按钮 -->
+            <div class="meBox-Button">
+                <a href="https://emmmdediantai.rth1.me/" target="_blank">电台</a>
+            </div>
+        </div>
+        <!-- 伪终端介绍 -->
+        <div id="cmdBox">
+            <!-- 第一个终端 -->
+            <div class="cmd">
+                <!-- 三个按钮 -->
+                <div class="click">
+                    <div class="red"></div>
+                    <div class="yellow"></div>
+                    <div class="green"></div>
+                </div>
+                <!-- 顶部标题 -->
+                <div class="title">
+                    <span>PAPEREE - bash</span>
+                </div>
+                <!-- 终端内文字 -->
+                <div class="cmdText">
+                    <span style="color: rgb(0, 190, 0);">root@paperee</span>
+                    <span style="color: blue;">~</span>
+                    <span style="color: rgb(39, 39, 39);">./links1.sh</span>
+                    <ul class="ul">
+                        <li><a href="https://blog.ccox.cn/" target="_blank">朽木自雕的博客</a></li>
+			<li><a href="https://dataeverything.top/" target="_blank">DataEverything主页</a></li>
+                        <li><a href="https://www.zzchat.cf/" target="_blank">初墨的小窝</a>｜<a href="https://blog.zzchat.eu.org/" target="_blank">博客</a>｜<a href="https://www.zzchat.cf/wiki/" target="_blank">HC百科</a>｜<a href="https://zzchumo.github.io/XChat-doc/" target="_blank">XC用户手册</a></li>
+                        <li><a href="https://www.youtube.com/c/Beluga1" target="_blank">Beluga's YouTube</a></li>
+                        <li><a href="http://imoier.xyz/" target="_blank">JSH的主页</a>｜<a href="https://blog.imoier.xyz/" target="_blank">博客</a></li>
+                        <li><a href="https://dawnboy395720337.wordpress.com/" target="_blank">Dawnboy_火凤的个人主页</a></li>
+                        <li><a href="https://qiu-lingyan.github.io/1/" target="_blank">这里是秋凌烟</a></li>
+                        <li><a href="https://fcjz.github.io/Homepage/" target="_blank">fcjz's Homepage</a>｜<a href="https://fcjz.mystrikingly.com/" target="_blank">Blog</a></li>
+                        <li><a href="https://www.pillows.net.eu.org/" target="_blank">4n0n4me的垃圾场</a>｜<a href="https://hcwiki.github.io/" target="_blank">非官方HC指南</a></li>
+                        <li><a href="https://emmmdediantai.rth1.me/" target="_blank">emmm的电台</a></li>
+                        <li><a href="https://site-7767017-955-9623.mystrikingly.com/" target="_blank">火星人的个人主页</a></li>
+                        <li><a href="https://scplover.mystrikingly.com/" target="_blank">Scplover's Site</a></li>
+                        <li><a href="https://www.hwuju.top/" target="_blank">无距的博客</a></li>
+                        <li><a href="https://firesonz.top/" target="_blank">FiresonZ的个人主页</a></li>
+                        <li><a href="http://joetype.osww.cn/" target="_blank">子逸云互联博客</a></li>
+                        <li><a href="https://ly.osere.cn/" target="_blank">李鱼的大大大船</a>｜<a href="http://lying.osere.cn/" target="_blank">网页</a>｜<a href="https://ly-2022-convenient.mysxl.cn/" target="_blank">软件开发主页</a></li>
+                        <li><a href="http://xw.hhua.shop/" target="_blank">魏若瑜的网站</a></li>
+                        <li><a href="https://suerblog.netlify.app/" target="_blank">SUERBLOG</a>｜<a href="https://sulin.netlify.app/" target="_blank">SuPage</a>｜<a href="https://heretosu.github.io/" target="_blank">SuStudio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 第二个终端 -->
+            <div class="cmd cmd2">
+                <!-- 三个按钮 -->
+                <div class="click">
+                    <div class="red"></div>
+                    <div class="yellow"></div>
+                    <div class="green"></div>
+                </div>
+                <!-- 顶部标题 -->
+                <div class="title">
+                    <span>PAPEREE - bash</span>
+                </div>
+                <!-- 终端内文字 -->
+                <div class="cmdText">
+                    <span style="color: rgb(0, 190, 0);">root@paperee</span>
+                    <span style="color: blue;">~</span>
+                    <span style="color: rgb(39, 39, 39);">cat /chatroom.txt</span>
+                    <p><a href="https://hack.chat/" target="_blank">hack.chat</a> <a href="https://crosst.chat/" target="_blank">十字街</a> <a href="https://xq.kzw.ink/" target="_blank">XChat</a> <a href="https://im.uerr.cn/" target="_blank">星聊</a> <a href="https://drrr.com/" target="_blank">DOLLARS</a></p>
+                    <br>
+                    <span style="color: rgb(0, 190, 0);">root@paperee</span>
+                    <span style="color: blue;">~</span>
+                    <span style="color: rgb(39, 39, 39);">./links2.sh</span>
+                    <ul class="ul">
+                        <li><a href="http://book.osww.cn/" target="_blank">纸片君ee的文档库</a>｜<a href="https://mark.osww.cn/" target="_blank">书签页</a>｜<a href="https://game.osww.cn/" target="_blank">游戏页</a></li>
+                        <li><a href="https://hiyoteam.eu.org/" target="_blank">HiyoTeam主页</a></li>
+                        <li><a href="https://mrzhang365.github.io/" target="_blank">小张的个人主页</a>｜<a href="https://zhangsoft611488867.wordpress.com/" target="_blank">软件页</a></li>
+                        <li><a href="https://sprinkle.eu.org/" target="_blank">Sprinkle的雨中小栈</a></li>
+                        <li><a href="https://xsdboke.mysxl.cn/" target="_blank">学生党的web</a></li>
+                        <li><a href="https://www.cnblogs.com/MemsetZero/" target="_blank">msmset0的博客</a></li>
+                        <li><a href="https://sage-thirteen.mysxl.cn/" target="_blank">贤者13的树洞</a></li>
+                        <li><a href="https://gitee.com/BirdingLight" target="_blank">Light's Gitee</a>｜<a href="https://lit-bird.github.io/" target="_blank">Page</a></li>
+                        <li><a href="https://yanfuqiang.github.io/" target="_blank">严富强的博客</a></li>
+                        <li><a href="http://blog.thz.cool/" target="_blank">Maggie's blog</a>｜<a href="https://docs.thz.cool/" target="_blank">文档库</a></li>
+                        <li><a href="https://novelhouse.mysxl.cn/" target="_blank">13和ee的小说屋</a></li>
+                        <li><a href="https://github.com/MuRongPIG" target="_blank">MuRongPIG's GitHub</a>｜<a href="https://onedrive-murongpig.vercel.app/" target="_blank">储物箱</a>｜<a href="https://murongpig.github.io/" target="_blank">博客</a></li>
+                        <li><a href="https://littlebees.herokuapp.com/" target="_blank">黑茶的学习笔记</a></li>
+                        <li><a href="http://steven.osere.cn/" target="_blank">Steven的垃圾站</a>｜<a href="http://stve.mysxl.cn/" target="_blank">个人主页</a></li>
+                        <li><a href="https://blaze.sqj.repl.co/" target="_blank">Blaze的个人主页</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+    <!-- 页脚 -->
+    <!-- <div id="footer">
+        <p>© 2022 monse</p>
+        <p>THEME MADE BY <a href="http://www.xiaodao.biz/">Nutssss</a></p>
+    </div> -->
+</body>
+</html>
